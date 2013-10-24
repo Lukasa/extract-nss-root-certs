@@ -137,7 +137,7 @@ func parseInput(inFile io.Reader) (license, cvsId string, objects []*Object) {
 	}
 	// Now collect the license block.
 	for line, eof := getLine(in, &lineNo); !eof; line, eof = getLine(in, &lineNo) {
-		if strings.Contains(line, "CVS_ID") {
+		if !strings.HasPrefix(line, "#") {
 			break
 		}
 		license += line
